@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Meter Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <h1>Smart Meter Data</h1>
+    <div class="grid-container">
+        {% for i in range(8) %}
+        <div class="device-container">
+            <h2>Device {{ i + 1 }}</h2>
+            <p>Device: <span id="device_id_{{ i + 1 }}">N/A</span> (<span id="device_name_{{ i + 1 }}">N/A</span>)</p>
+            <p>Timestamp: <span id="timestamp_{{ i + 1 }}">N/A</span></p>
+            <p>Power: <span id="power_consumption_{{ i + 1 }}">N/A</span>W</p>
+            <p>Power Factor: <span id="power_factor_{{ i + 1 }}">N/A</span></p>
+            <div class="chart-container">
+                <canvas id="powerChart_{{ i + 1 }}"></canvas>
+            </div>
+            <button class="export-btn" onclick="exportCSV({{ i }})">Export CSV</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">X</button>
+            <canvas id="popupChart"></canvas>
+        </div>
+    </div>
+</body>
+</html>
