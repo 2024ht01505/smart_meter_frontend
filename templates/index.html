@@ -11,16 +11,18 @@
 </head>
 <body>
     <h1>Smart Meter Data</h1>
+    <p id="consolidated_power">Consolidated Power: 0 W</p>
     <div class="grid-container">
         {% for i in range(8) %}
         <div class="device-container">
             <h2>Device {{ i + 1 }}</h2>
-            <p>Device: <span id="device_id_{{ i + 1 }}">N/A</span> (<span id="device_name_{{ i + 1 }}">N/A</span>)</p>
-            <p>Timestamp: <span id="timestamp_{{ i + 1 }}">N/A</span></p>
-            <p>Power: <span id="power_consumption_{{ i + 1 }}">N/A</span>W</p>
-            <p>Power Factor: <span id="power_factor_{{ i + 1 }}">N/A</span></p>
+            <span id="device_id_{{ i + 1 }}">Not Connected</span> (<span id="device_name_{{ i + 1 }}">Not Connected</span>)</p>
+            <p>Timestamp: <span id="timestamp_{{ i + 1 }}">Not Connected</span></p>
+            <p>Power: <span id="power_consumption_{{ i + 1 }}">Not Connected</span></p>
+            <p>Power Factor: <span id="power_factor_{{ i + 1 }}">Not Connected</span></p>
             <div class="chart-container">
                 <canvas id="powerChart_{{ i + 1 }}"></canvas>
+                <div id="not_connected_{{ i + 1 }}" class="not-connected">Not Connected</div>
             </div>
             <button class="export-btn" onclick="exportCSV({{ i }})">Export CSV</button>
         </div>
